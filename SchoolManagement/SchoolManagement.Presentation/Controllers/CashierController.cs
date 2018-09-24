@@ -31,5 +31,11 @@ namespace SchoolManagement.Presentation.Controllers
 
             return View(studentFeeInvoiceList);
         }
+
+        public ActionResult Create ( )
+        {
+            return View( );
+        }
+
     }
 }

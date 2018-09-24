@@ -261,9 +261,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_HomeNavbar.cshtml" />
     <Content Include="Views\Cashier\Payment.cshtml" />
-    <Content Include="Views\Cashier\StudentInVoiceList.cshtml" />
-    <Content Include="Views\Cashier\InvoicesList.cshtml" />
     <Content Include="Views\Cashier\StudentInvoices.cshtml" />
+    <Content Include="Views\Cashier\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
