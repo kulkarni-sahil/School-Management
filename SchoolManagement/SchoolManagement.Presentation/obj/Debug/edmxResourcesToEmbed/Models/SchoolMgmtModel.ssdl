@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="AdminEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AdminPassword" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Attendence">
+    <Key>
+      <PropertyRef Name="AttendenceId" />
+    </Key>
+    <Property Name="AttendenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TodayDate" Type="date" Nullable="false" />
+    <Property Name="Attended" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cashiers">
+    <Key>
+      <PropertyRef Name="CashierId" />
+    </Key>
+    <Property Name="CashierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CashierName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CashierEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CashierPassword" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fees">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="AmountPaid" Type="int" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="CashierId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grades">
+    <Key>
+      <PropertyRef Name="GradeId" />
+    </Key>
+    <Property Name="GradeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GradeName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="GradeFees" Type="int" Nullable="false" />
+    <Property Name="TeacherId" Type="int" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="StudentGender" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="StudentDOB" Type="datetime" Nullable="false" />
+    <Property Name="StudentBloodGroup" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="StudentContact" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="StudentAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="StudentFees" Type="int" Nullable="false" />
+    <Property Name="GradeId" Type="int" Nullable="false" />
+    <Property Name="StudentEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentPassword" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="TeacherId" />
+    </Key>
+    <Property Name="TeacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeacherName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TeacherGender" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="TeacherDOB" Type="datetime" Nullable="false" />
+    <Property Name="TeacherContact" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TeacherAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TeacherEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TeacherPassword" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AttendenceStudentId">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Attendence" Type="Self.Attendence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Attendence">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeeCashierId">
+    <End Role="Cashiers" Type="Self.Cashiers" Multiplicity="1" />
+    <End Role="Fees" Type="Self.Fees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cashiers">
+        <PropertyRef Name="CashierId" />
+      </Principal>
+      <Dependent Role="Fees">
+        <PropertyRef Name="CashierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeeStudentId">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Fees" Type="Self.Fees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Fees">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GradeId">
+    <End Role="Grades" Type="Self.Grades" Multiplicity="1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grades">
+        <PropertyRef Name="GradeId" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="GradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_GradeTeacherId">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+    <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="TeacherId" />
+      </Principal>
+      <Dependent Role="Grades">
+        <PropertyRef Name="TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SchoolManagementModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Attendence" EntityType="Self.Attendence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cashiers" EntityType="Self.Cashiers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fees" EntityType="Self.Fees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grades" EntityType="Self.Grades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AttendenceStudentId" Association="Self.FK_AttendenceStudentId">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Attendence" EntitySet="Attendence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeeCashierId" Association="Self.FK_FeeCashierId">
+      <End Role="Cashiers" EntitySet="Cashiers" />
+      <End Role="Fees" EntitySet="Fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeeStudentId" Association="Self.FK_FeeStudentId">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Fees" EntitySet="Fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GradeId" Association="Self.FK_GradeId">
+      <End Role="Grades" EntitySet="Grades" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="fk_GradeTeacherId" Association="Self.fk_GradeTeacherId">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Grades" EntitySet="Grades" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

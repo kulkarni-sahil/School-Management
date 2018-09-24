@@ -88,3 +88,7 @@ F:\miniProject\SchoolManagement\SchoolManagement.Presentation\obj\Debug\SchoolMa
 F:\miniProject\SchoolManagement\SchoolManagement.Presentation\obj\Debug\SchoolManagement.Presentation.csproj.CopyComplete
 F:\miniProject\SchoolManagement\SchoolManagement.Presentation\obj\Debug\SchoolManagement.Presentation.dll
 F:\miniProject\SchoolManagement\SchoolManagement.Presentation\obj\Debug\SchoolManagement.Presentation.pdb
+F:\miniProject\SchoolManagement\SchoolManagement.Presentation\bin\EntityFramework.dll
+F:\miniProject\SchoolManagement\SchoolManagement.Presentation\bin\EntityFramework.SqlServer.dll
+F:\miniProject\SchoolManagement\SchoolManagement.Presentation\bin\EntityFramework.xml
+F:\miniProject\SchoolManagement\SchoolManagement.Presentation\bin\EntityFramework.SqlServer.xml

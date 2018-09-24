@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h2>Payment</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-5">
+        <h4>Find Student</h4>
+        <br />
+        <form role="form">
+            <table class="table">
+                <tr>
+                    <td><label class="control-label">Student Id:</label></td>
+                    <td><input type="number" class="form-control" id="txtStudentId" placeholder="Enter student Id" required /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button id="btnSearch" class="btn btn-default">Search</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+@*<div id="searchedList">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Invoice Id</th>
+                <th>Payment Date</th>
+                <th>Amount Paid</th>
+                <th>Student Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>data.InvoiceId</td>
+                <td>data.PaymentDate</td>
+                <td>data.AmountPaid</td>
+                <td>StudentId</td>
+            </tr>
+        </tbody>
+    </table>
+</div>*@
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#btnSearch').click(function (e) {            
+            var id = $('#txtStudentId').val();
+            location.href = "http://localhost:55393/Cashier/StudentInvoices?studentId=" + id;
+            return false;
+            //$.ajax({
+            //    url: "http://localhost:55393/Cashier/Payment?studentId=" + id,
+            //    type: "POST",
+            //    dataType: "html",
+            //    data: "json",
+            //    success: function (data) {
+            //        //var message = data.Message;
+            //        console.log(data);
+            //        $('#searchedList').html(data);
+            //    }
+            //});
+            //$.post("http://localhost:55393/Cashier/Payment?studentId=" + id, function (data) {
+            //        $('#searchedList').empty();
+            //        $.each(data, function (index, invoice) {
+            //            var row = "<tr>< td >" + invoice.InvoiceId + "</td><td>" + invoice.PaymentDate + "</td><td> " + invoice.AmountPaid + "</td><td>" + invoice.StudentId + "</td></tr >";
+            //            $('#searchedList').append(row);
+            //        });
+            //    });
+        });
+    });
+
+</script>
